@@ -31,7 +31,7 @@ Ext.apply(Zenoss.render, {
         }
 
         if (isLink) {
-            return '<a href="'+obj.uid+'"onClick="Ext.getCmp(\\'component_card\\').componentgrid.jumpToEntity(\\''+obj.uid +'\\', \\''+obj.meta_type+'\\');return false;">'+obj.title+'</a>';
+            return '<a href="'+Zenoss.render.link(undefined, obj.uid, undefined)+'"onClick="Ext.getCmp(\\'component_card\\').componentgrid.jumpToEntity(\\''+obj.uid +'\\', \\''+obj.meta_type+'\\');return false;">'+obj.title+'</a>';
         } else {
             return obj.title;
         }

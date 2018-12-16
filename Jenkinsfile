@@ -9,7 +9,7 @@ node {
   stage('Build') {
   docker.image('zenoss/build-tools:0.0.10').inside() { 
       sh '''
-        python setup.py bdist_wheel
+        python setup.py bdist_egg
       '''
     }
   }
@@ -25,7 +25,7 @@ node {
         remote.allowAnyHosts = true
 
         def zver = sh( returnStdout: true, script: ''' awk -F'"' '/^VERSION =/{print $2}' setup.py ''' ).trim()
-        sshPut remote: remote, from: "dist/ZenPacks.zenoss.ZenPackLib-${zver}-py2-none-any.whl", into: env.PUBLISH_SSH_DIR
+        sshPut remote: remote, from: "dist/ZenPacks.zenoss.ZenPackLib-${zver}-py2.7.egg", into: env.PUBLISH_SSH_DIR
       }
     }
   }
